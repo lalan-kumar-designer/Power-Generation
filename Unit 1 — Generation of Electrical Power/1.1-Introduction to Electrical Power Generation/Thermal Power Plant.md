@@ -1,11 +1,7 @@
 
 # Thermal Power Plant
 
-## Introduction
-
-A thermal power plant is a generating station where the chemical energy of fuel is converted into electrical energy. Coal is commonly used in conventional thermal power plants. Other fuels, such as natural gas, may also be used depending on the plant design.
-
-The heat produced by burning fuel is used to convert water into high-pressure steam. This steam rotates a turbine connected to an electrical generator, which produces electricity.
+A thermal power plant is a generating station in which the chemical energy of fuel is converted into electrical energy. In a conventional coal-fired power plant, coal is burned in a boiler to produce heat. This heat converts water into high-pressure steam, which drives a steam turbine connected to an electrical generator.
 
 ## Thermal Power Plant
 
@@ -19,50 +15,102 @@ A thermal power plant works on the principle of converting heat energy into mech
 
 **Chemical Energy → Heat Energy → Mechanical Energy → Electrical Energy**
 
-Fuel is burned in the boiler to produce steam. The high-pressure steam drives the turbine, and the turbine rotates the generator. The generated electricity passes through a transformer before being supplied to the transmission system.
+Coal is burned in the furnace, and the heat produced converts water into steam. The steam rotates the turbine, which drives the generator. The generated electricity passes through a transformer before being supplied to the transmission system.
 
-## Layout Diagram of a Thermal Power Plant
+## Layout of a Thermal Power Plant
+
+The layout of a thermal power plant consists of the coal and ash circuit, air and flue gas circuit, water and steam circuit, cooling water circuit, and electrical generation system.
 
 <p align="center">
-  <img src="https://themechanicalengineering.com/wp-content/uploads/2021/03/Thermal-Power-Plant-Layout.jpg" alt="Thermal Power Plant Layout Diagram" width="850">
+  <img src="https://themechanicalengineering.com/wp-content/uploads/2021/03/Thermal-Power-Plant-Layout.jpg" alt="Layout Diagram of Thermal Power Plant" width="850">
 </p>
+
+### Simplified Layout Diagram
+
+```text
+                   THERMAL POWER PLANT
+                            |
+          +-----------------+------------------+
+          |                 |                  |
+          v                 v                  v
+     Coal and Ash       Water and Steam    Air and Flue Gas
+        Circuit             Circuit             Circuit
+          |                 |                  |
+          v                 v                  v
+    Coal Handling        Feed Pump         Air Supply
+          |                 |                  |
+          v                 v                  v
+        Boiler <--------- Feedwater       Furnace
+          |                                    |
+          v                                    v
+   High-Pressure Steam                    Flue Gases
+          |                                    |
+          v                                    v
+    Steam Turbine                       Heat Recovery
+          |                              Equipment
+          v                                    |
+      Generator                                v
+          |                                 Chimney
+          v
+     Transformer
+          |
+          v
+  Transmission Lines
+
+
+       Exhaust Steam
+            |
+            v
+         Condenser
+            |
+            v
+       Feedwater Pump
+            |
+            v
+          Boiler
+
+
+       Cooling Water Circuit
+                |
+                v
+           Cooling System
+                |
+                v
+             Condenser
+```
+
+The actual arrangement varies with the plant design. The diagram above is a simplified representation of the main circuits.
 
 ## Main Components
 
-**Boiler:** Produces high-pressure steam using heat released by fuel combustion.
+**Boiler:** The boiler converts water into high-pressure steam using heat released by fuel combustion.
 
-**Steam Turbine:** Converts the energy of steam into mechanical rotational energy.
+**Steam Turbine:** The steam expands through the turbine and rotates its shaft, producing mechanical energy.
 
-**Alternator:** Converts mechanical energy into electrical energy through electromagnetic induction.
+**Generator:** The generator converts the turbine's mechanical energy into electrical energy through electromagnetic induction.
 
-**Condenser:** Condenses exhaust steam from the turbine into water so that it can be reused.
+**Condenser:** The condenser converts exhaust steam into water so that it can be reused in the steam-water cycle.
 
-**Feedwater Pump:** Pumps water back to the boiler at the required pressure.
+**Feedwater Pump:** The pump returns water to the boiler at the required pressure.
 
-**Cooling System:** Removes excess heat from the plant.
+**Cooling System:** The cooling system removes excess heat from the plant.
 
-**Chimney and Pollution-Control Equipment:** Help discharge flue gases and reduce pollutants produced during combustion.
+**Chimney and Pollution-Control Equipment:** These systems help discharge flue gases and control pollutants produced during combustion.
 
 ## Working of a Thermal Power Plant
 
-First, coal is supplied to the furnace and burned to release heat. The boiler uses this heat to produce high-pressure steam. The steam then enters the turbine and makes it rotate.
+Coal is transported to the boiler furnace through the coal-handling system. Air is supplied for combustion, and the resulting heat converts boiler water into high-pressure steam.
 
-The turbine shaft is coupled to an alternator. As the turbine rotates, the alternator generates electrical energy. A transformer raises the voltage to a suitable level for transmission.
+The steam passes through the turbine and rotates its shaft. The turbine drives the generator, which produces electrical energy. A transformer raises the voltage to a suitable level for transmission.
 
-After passing through the turbine, the exhaust steam enters the condenser, where it is converted into water. The feedwater pump returns this water to the boiler, completing the steam-water cycle.
+After leaving the turbine, the exhaust steam enters the condenser and becomes water again. The feedwater pump sends the water back to the boiler, completing the steam-water cycle. Meanwhile, flue gases pass through suitable heat-recovery and pollution-control equipment before discharge.
 
-## Advantages
+## Advantages and Disadvantages
 
-Thermal power plants can generate large amounts of electricity and provide continuous power when fuel and equipment are available. They can also be used to meet the electricity demands of industries, cities, and the electrical grid.
+Thermal power plants can produce large amounts of electricity and can operate continuously when fuel and equipment are available. They are useful for supplying electricity to industries, cities, and the electrical grid.
 
-## Disadvantages
-
-Thermal power plants consume large quantities of fuel and require regular maintenance. Coal-fired plants produce carbon dioxide and other pollutants. They also require cooling systems and proper handling of ash and waste.
-
-## Applications
-
-Thermal power plants are used for large-scale electricity generation and supplying power to domestic, commercial, agricultural, and industrial consumers through the electrical grid.
+However, they consume fuel, require regular maintenance, and may produce carbon dioxide and other pollutants. They also require cooling arrangements and proper ash handling.
 
 ## Conclusion
 
-A thermal power plant is an important method of conventional electricity generation. It uses heat to produce steam, steam to rotate a turbine, and the turbine to drive an electrical generator. Its major components work together to produce and supply electricity.
+A thermal power plant is an important method of conventional electricity generation. Its major systems work together to convert fuel energy into heat, heat into mechanical energy, and mechanical energy into electrical energy.
