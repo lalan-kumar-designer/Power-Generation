@@ -1,70 +1,113 @@
-
 # Thermal Power Plant
 
-A thermal power plant is a generating station where the chemical energy of fuel is converted into electrical energy. In a conventional coal-fired thermal power plant, coal is burned in a boiler to produce heat. This heat converts water into high-pressure steam, which drives a steam turbine connected to an electrical generator.
+## Introduction
 
-Thermal power plants are widely used for large-scale electricity generation. Their output can be supplied to the electrical grid to meet domestic, commercial, agricultural, and industrial demand.
+A thermal power plant is a generating station in which heat energy is converted into electrical energy. Coal is commonly used as fuel in conventional thermal power plants.
 
-## Thermal Power Plant
-
-<p align="center">
-  <img src="../../../public/images/thermal-power-plant.webp" alt="External View of a Thermal Power Plant" width="900">
-</p>
-
-*Figure 1: External view of a thermal power plant.*
-
-## Working Principle
-
-A thermal power plant works on the principle of converting heat energy into mechanical energy and then into electrical energy.
-
-**Chemical Energy → Heat Energy → Mechanical Energy → Electrical Energy**
-
-Coal is burned in the furnace, and the heat produced converts boiler water into high-pressure steam. The steam expands through the turbine and rotates its shaft. The turbine drives the generator, which produces electrical energy through electromagnetic induction.
-
-A transformer raises the generated voltage to a suitable level for transmission.
+The chemical energy of fuel is converted into heat energy, heat energy is converted into mechanical energy, and mechanical energy is converted into electrical energy.
 
 ## Layout of a Thermal Power Plant
 
-The layout shows the arrangement of the main components and the paths followed by fuel, steam, flue gases, feedwater, and cooling water.
+![Thermal Power Plant Layout](../../public/svg/thermal-power-plant-layout.svg)
 
-<p align="center">
-  <img src="../../../public/svg/thermal-power-plant-layout.svg" alt="Thermal Power Plant Layout Diagram" width="1000">
-</p>
+## Working Principle
 
-*Figure 2: Schematic layout of a coal-fired thermal power plant.*
+A thermal power plant works on the principle of converting heat energy into electrical energy.
+
+1. Coal is supplied to the furnace after crushing and pulverising.
+2. The coal is burnt in the furnace to produce heat.
+3. The heat converts boiler water into high-pressure steam.
+4. The steam drives the steam turbine.
+5. The turbine rotates the alternator to generate electricity.
+6. Exhaust steam enters the condenser and is converted into water.
+7. The water is pumped back to the boiler for reuse.
 
 ## Main Components
 
-**Boiler:** The boiler uses heat from fuel combustion to convert water into high-pressure steam.
+### 1. Boiler
 
-**Steam Turbine:** High-pressure steam expands through the turbine and produces mechanical rotational energy.
+The boiler converts water into high-pressure steam using heat produced by fuel combustion.
 
-**Generator:** The generator converts the turbine's mechanical energy into electrical energy through electromagnetic induction.
+### 2. Furnace
 
-**Condenser:** The condenser converts exhaust steam from the turbine back into water so that it can be reused.
+The furnace is the chamber where fuel is burnt to produce heat.
 
-**Feedwater Pump:** The pump returns water to the boiler at the required pressure.
+### 3. Steam Turbine
 
-**Economiser and Air Preheater:** The economiser uses heat from flue gases to warm feedwater, while the air preheater warms the air supplied for combustion.
+The steam turbine converts the energy of high-pressure steam into mechanical energy.
 
-**Cooling System:** The cooling system removes excess heat, particularly from the condenser.
+### 4. Alternator
 
-**Coal and Ash Handling Systems:** The coal-handling system supplies fuel to the furnace, while the ash-handling system collects and transports the ash produced during combustion.
+The alternator converts mechanical energy into electrical energy.
 
-## Working of a Thermal Power Plant
+### 5. Condenser
 
-Coal is supplied to the furnace through the coal-handling system. Air is provided for combustion, and the resulting heat is used to produce steam in the boiler. The steam passes through the superheater, where its temperature is increased before it enters the turbine.
+The condenser converts exhaust steam from the turbine into water.
 
-The turbine rotates the generator and produces electricity. The generated electricity is then passed through a transformer and supplied to the transmission network.
+### 6. Feedwater Pump
 
-After leaving the turbine, the exhaust steam enters the condenser and changes back into water. The feedwater pump returns this water to the boiler, completing the steam-water cycle. Meanwhile, the flue gases pass through heat-recovery equipment and suitable pollution-control systems before being discharged through the chimney.
+The feedwater pump supplies water to the boiler at the required pressure.
 
-## Advantages and Disadvantages
+### 7. Cooling Tower
 
-Thermal power plants can generate large amounts of electricity and can operate continuously when fuel and equipment are available. They are useful for supplying power to large electrical grids.
+The cooling tower removes heat from circulating cooling water.
 
-However, they consume fuel, require regular maintenance, and may produce carbon dioxide and other pollutants. Coal-fired plants also require proper ash disposal, cooling arrangements, and pollution-control equipment.
+### 8. Chimney
+
+The chimney releases flue gases into the atmosphere.
+
+### 9. Economiser
+
+The economiser uses waste heat from flue gases to preheat the boiler feedwater.
+
+### 10. Air Preheater
+
+The air preheater warms the air supplied to the furnace using heat from flue gases.
+
+## Energy Conversion
+
+Chemical Energy of Fuel  
+↓  
+Heat Energy in the Boiler  
+↓  
+Thermal Energy of Steam  
+↓  
+Mechanical Energy of the Turbine  
+↓  
+Electrical Energy from the Alternator
+
+## Advantages
+
+- Suitable for large-scale electricity generation.
+- Can supply electricity continuously when fuel and water are available.
+- Fuel can be stored for later use.
+- Can be located near coal mines to reduce transportation costs.
+
+## Disadvantages
+
+- Causes air pollution and greenhouse gas emissions.
+- Requires a continuous supply of fuel and water.
+- Has high operating and maintenance costs.
+- Produces ash that requires proper disposal.
+- Takes time to start and reach full capacity.
+
+## Applications
+
+- Domestic electricity supply.
+- Industrial power generation.
+- Commercial electricity supply.
+- Electricity generation for the power grid.
 
 ## Conclusion
 
-A thermal power plant is an important method of conventional electricity generation. It converts the energy of fuel into heat, uses the heat to produce steam, and converts the steam's energy into mechanical energy through a turbine. The generator then converts this mechanical energy into electrical energy.
+A thermal power plant is an important method of generating electricity. It converts the heat energy of fuel into mechanical energy through a steam turbine and then into electrical energy through an alternator.
+
+## Important Questions
+
+1. Define a thermal power plant.
+2. Explain the working principle of a thermal power plant.
+3. Draw and explain the layout of a thermal power plant.
+4. List the main components of a thermal power plant.
+5. Explain the functions of a boiler, turbine and condenser.
+6. State the advantages and disadvantages of a thermal power plant.
+7. Explain the energy conversion process in a thermal power plant.
