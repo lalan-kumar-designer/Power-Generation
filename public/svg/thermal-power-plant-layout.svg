@@ -1,0 +1,132 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850">
+  <title>Thermal Power Plant Layout</title>
+  <desc>Educational schematic of a coal-fired thermal power plant showing fuel, steam, flue gas, electrical generation, feedwater and cooling water circuits.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#111"/>
+    </marker>
+    <style>
+      .box { fill: white; stroke: #111; stroke-width: 2.5; }
+      .line { fill: none; stroke: #111; stroke-width: 2.5; marker-end: url(#arrow); }
+      .pipe { fill: none; stroke: #111; stroke-width: 3; }
+      .label { font-family: Arial, sans-serif; font-size: 17px; font-weight: bold; text-anchor: middle; fill: #111; }
+      .small { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; fill: #111; }
+      .heading { font-family: Arial, sans-serif; font-size: 32px; font-weight: bold; text-anchor: middle; fill: #111; }
+    </style>
+  </defs>
+
+  <rect x="10" y="10" width="1380" height="830" fill="white" stroke="#111" stroke-width="2"/>
+  <text x="700" y="55" class="heading">THERMAL POWER PLANT LAYOUT</text>
+  <line x1="250" y1="70" x2="1150" y2="70" stroke="#111" stroke-width="2"/>
+
+  <!-- Coal and boiler circuit -->
+  <rect class="box" x="40" y="160" width="150" height="70"/>
+  <text class="label" x="115" y="188">
+    <tspan x="115">COAL</tspan><tspan x="115" dy="23">STORAGE</tspan>
+  </text>
+
+  <rect class="box" x="250" y="160" width="170" height="70"/>
+  <text class="label" x="335" y="188">
+    <tspan x="335">COAL HANDLING</tspan><tspan x="335" dy="23">PLANT</tspan>
+  </text>
+
+  <rect class="box" x="480" y="145" width="170" height="100"/>
+  <text class="label" x="565" y="200">BOILER</text>
+
+  <path class="line" d="M190 195 H250"/>
+  <path class="line" d="M420 195 H480"/>
+
+  <!-- Ash handling -->
+  <rect class="box" x="250" y="315" width="170" height="70"/>
+  <text class="label" x="335" y="343">
+    <tspan x="335">ASH HANDLING</tspan><tspan x="335" dy="23">PLANT</tspan>
+  </text>
+  <rect class="box" x="40" y="315" width="150" height="70"/>
+  <text class="label" x="115" y="343">
+    <tspan x="115">ASH</tspan><tspan x="115" dy="23">STORAGE</tspan>
+  </text>
+  <path class="line" d="M480 225 V350 H420"/>
+  <path class="line" d="M250 350 H190"/>
+
+  <!-- Flue gas circuit -->
+  <rect class="box" x="480" y="310" width="170" height="65"/>
+  <text class="label" x="565" y="337">
+    <tspan x="565">ECONOMISER</tspan>
+  </text>
+  <rect class="box" x="480" y="415" width="170" height="65"/>
+  <text class="label" x="565" y="442">
+    <tspan x="565">AIR PREHEATER</tspan>
+  </text>
+
+  <path class="line" d="M565 245 V310"/>
+  <path class="line" d="M565 375 V415"/>
+  <path class="line" d="M650 447 H705 V130 H790"/>
+
+  <!-- Chimney -->
+  <rect class="box" x="790" y="100" width="150" height="60"/>
+  <text class="label" x="865" y="136">CHIMNEY</text>
+  <path class="line" d="M865 130 V100"/>
+  <text class="small" x="865" y="88">FLUE GASES</text>
+
+  <!-- Steam circuit -->
+  <rect class="box" x="700" y="220" width="160" height="70"/>
+  <text class="label" x="780" y="249">
+    <tspan x="780">SUPERHEATER</tspan>
+  </text>
+  <path class="line" d="M650 195 H700"/>
+
+  <rect class="box" x="895" y="220" width="130" height="70"/>
+  <text class="label" x="960" y="249">
+    <tspan x="960">MAIN</tspan><tspan x="960" dy="22">VALVE</tspan>
+  </text>
+  <path class="line" d="M860 255 H895"/>
+
+  <rect class="box" x="1060" y="210" width="130" height="90"/>
+  <text class="label" x="1125" y="260">TURBINE</text>
+  <path class="line" d="M1025 255 H1060"/>
+
+  <!-- Generator and electrical supply -->
+  <rect class="box" x="1220" y="210" width="140" height="90"/>
+  <text class="label" x="1290" y="260">GENERATOR</text>
+  <path class="pipe" d="M1190 255 H1220"/>
+  <path class="line" d="M1360 255 H1380"/>
+  <text class="small" x="1290" y="190">ELECTRICAL OUTPUT</text>
+
+  <!-- Exhaust steam and condenser -->
+  <path class="line" d="M1125 300 V390"/>
+  <text class="small" x="1200" y="340">EXHAUST STEAM</text>
+  <rect class="box" x="1040" y="390" width="170" height="65"/>
+  <text class="label" x="1125" y="430">CONDENSER</text>
+
+  <!-- Feedwater circuit -->
+  <rect class="box" x="790" y="520" width="180" height="70"/>
+  <text class="label" x="880" y="548">
+    <tspan x="880">FEEDWATER</tspan><tspan x="880" dy="23">PUMP</tspan>
+  </text>
+  <rect class="box" x="520" y="520" width="200" height="70"/>
+  <text class="label" x="620" y="548">
+    <tspan x="620">FEEDWATER</tspan><tspan x="620" dy="23">HEATER</tspan>
+  </text>
+
+  <path class="line" d="M1040 422 H1000 V555 H970"/>
+  <path class="line" d="M790 555 H720"/>
+  <path class="line" d="M620 520 V490 H650 V245"/>
+
+  <!-- Cooling water circuit -->
+  <rect class="box" x="1040" y="650" width="170" height="65"/>
+  <text class="label" x="1125" y="677">
+    <tspan x="1125">COOLING WATER</tspan><tspan x="1125" dy="22">SOURCE</tspan>
+  </text>
+  <circle cx="960" cy="682" r="25" fill="white" stroke="#111" stroke-width="2.5"/>
+  <text class="small" x="960" y="687">P</text>
+  <path class="line" d="M1040 682 H985"/>
+  <path class="line" d="M960 657 V455 H1040"/>
+  <text class="small" x="960" y="740">CIRCULATING</text>
+  <text class="small" x="960" y="758">WATER PUMP</text>
+
+  <!-- Legend -->
+  <rect x="40" y="770" width="820" height="45" fill="white" stroke="#111" stroke-width="1.5"/>
+  <text x="60" y="798" font-family="Arial, sans-serif" font-size="15" fill="#111">Arrows indicate the direction of material and energy flow.</text>
+</svg>
+    
