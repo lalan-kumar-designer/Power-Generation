@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PowerGen 3D - .MD App</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Marked.js for parsing Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- GitHub Markdown Dark CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        html, body {
+            width: 100vw;
+            height: 100dvh;
+            overflow: hidden;
+            background-color: #050b14;
+            color: #f8fafc;
+            margin: 0;
+            padding: 0;
+        }
+        /* Crystal Clear Authentic Power Generation Turbine & Electrical Generator Plant Photo Background */
+        #photoBg {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100dvh;
+            background-image: 
+                linear-gradient(to bottom, rgba(5, 11, 20, 0.35) 0%, rgba(5, 11, 20, 0.65) 60%, rgba(5, 11, 20, 0.90) 100%),
+                url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=2000&q=95');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            transition: opacity 0.35s ease, transform 0.5s ease;
+        }
+        /* Hide Photo Background completely when Student is Reading Content */
+        body.reading-mode #photoBg {
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+        /* Top Bar Glass Surface */
+        .app-surface {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+        }
+        /* Viewport stays transparent on Folders so Original Photo shines through */
+        #mainViewport {
+            background: transparent;
+            transition: background-color 0.3s ease;
+        }
+        /* Solid Comfortable Student Reading Surface when .md Content is Open */
+        body.reading-mode #mainViewport {
+            background: #080e1a !important;
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+        }
+        /* Tactile 3D App Button */
+        .app-btn-3d {
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.55), 0 8px 18px rgba(6, 182, 212, 0.3);
+        }
+        .app-btn-3d:active {
+            transform: translateY(3px) scale(0.96);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.55), 0 3px 8px rgba(6, 182, 212, 0.15);
+        }
+        /* Student-Friendly Markdown Reader Container */
+        .markdown-body {
+            background: transparent !important;
+            color: #f1f5f9 !important;
+            padding: 1.5rem 1.35rem 3rem 1.35rem !important;
+            font-size: 1.02rem;
+            line-height: 1.8;
+            user-select: text;
+            max-width: 920px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+            color: #38bdf8 !important;
+            border-bottom-color: rgba(56, 189, 248, 0.2) !important;
+        }
+        /* Iconic 3D Folder & Study Unit Card Styling */
+        .folder-card-3d {
+            background: linear-gradient(160deg, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.92) 100%);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-top: 1px solid rgba(255, 255, 255, 0.35);
+            border-left: 1px solid rgba(255, 255, 255, 0.22);
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
+            border-bottom: 5px solid rgba(245, 158, 11, 0.85);
+            box-shadow: 0 14px 28px -4px rgba(0, 0, 0, 0.75), inset 0 1px 2px rgba(255, 255, 255, 0.22);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+        }
+        .folder-card-3d.file-card-3d {
+            border-bottom: 5px solid rgba(6, 182, 212, 0.9);
+        }
+        .folder-card-3d:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 34px -4px rgba(0, 0, 0, 0.85), inset 0 1px 3px rgba(255, 255, 255, 0.35);
+        }
+        .folder-card-3d:active {
+            transform: translateY(3px) scale(0.95);
+            border-bottom-width: 2px;
+        }
+        .icon-3d-badge {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.55), inset 0 2px 4px rgba(255, 255, 255, 0.45), inset 0 -4px 6px rgba(0, 0, 0, 0.45);
+        }
+        /* Pure Content Mode when in Fullscreen Landscape */
+        body.pure-landscape #topBar {
+            display: none !important;
+        }
+        body.pure-landscape #mainViewport {
+            margin: 0 !important;
+            border-radius: 0 !important;
+            border: none !important;
+            width: 100vw !important;
+            height: 100dvh !important;
+        }
+        /* Slim Mobile Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.45);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="relative flex flex-col justify-between">
+
+    <!-- Authentic Power Generation Turbine Plant Photo Background -->
+    <div id="photoBg"></div>
+
+    <!-- MINIMAL TOP BAR (Auto-Hides completely in Landscape Fullscreen so ONLY content shows) -->
+    <header id="topBar" class="relative z-30 mx-2.5 mt-2.5 px-3 py-2 rounded-2xl app-surface flex items-center justify-between gap-2 shrink-0">
+        <!-- Back Button (Steps back from File -> Subfolder -> Root Folder) -->
+        <button id="backToFoldersBtn" onclick="navigateUp()" aria-label="Back" class="hidden app-btn-3d w-10 h-10 bg-gradient-to-b from-slate-700 to-slate-900 text-cyan-300 rounded-xl border border-cyan-400/40 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </button>
+
+        <!-- Iconic 3D Power Folder Badge when on Root Home Grid -->
+        <div id="homeFolderLogo" class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 via-orange-500 to-red-600 icon-3d-badge flex items-center justify-center border border-white/30 shrink-0">
+            <svg class="w-5 h-5 text-white drop-shadow" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+        </div>
+
+        <!-- Original Browser Fullscreen + Hardware Landscape Lock Button -->
+        <button id="landscapeBtn" onclick="toggleFullScreenLandscape()" aria-label="Toggle Fullscreen Landscape" class="app-btn-3d w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600 icon-3d-badge text-white rounded-xl border border-cyan-200/50 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+            </svg>
+        </button>
+    </header>
+
+    <!-- MAIN VIEWPORT (Transparent on Folders to show Photo; Solid Clean Surface when Reading Content) -->
+    <main id="mainViewport" class="relative z-20 flex-1 mx-2.5 my-2.5 rounded-2xl overflow-y-auto overflow-x-hidden flex flex-col">
+        <!-- 3D Spinner Loader -->
+        <div id="loader" class="m-auto p-8 text-center flex flex-col items-center justify-center">
+            <div class="relative w-12 h-12">
+                <div class="absolute inset-0 rounded-full border-4 border-cyan-500/20 animate-ping"></div>
+                <div class="w-12 h-12 rounded-full border-4 border-cyan-400 border-t-transparent animate-spin"></div>
+            </div>
+        </div>
+
+        <!-- 3D HIERARCHICAL FOLDERS GRID VIEW -->
+        <div id="folderGridView" class="p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3.5 hidden"></div>
+
+        <!-- PURE CONTENT VIEW (Only shows when a .md file is opened) -->
+        <div id="renderedView" class="markdown-body hidden flex-1"></div>
+    </main>
+
+    <!-- Floating Exit Landscape Button (Subtle corner icon only visible in Fullscreen Landscape) -->
+    <button id="exitLandscapeBtn" onclick="toggleFullScreenLandscape()" aria-label="Exit Landscape" class="hidden fixed bottom-3 right-3 z-50 w-9 h-9 rounded-full bg-slate-900/50 backdrop-blur-md border border-cyan-400/30 text-cyan-300 flex items-center justify-center opacity-40 hover:opacity-100 active:scale-90 transition-all">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+    </button>
+
+    <script>
+        const REPO_OWNER = 'lkstudiokatoriya-ai';
+        const REPO_NAME = 'Power-Generation';
+        const BRANCH = 'main';
+
+        let mdFiles = [];
+        let currentDir = ''; // Tracks exact GitHub folder path e.g. "" or "Unit-1"
+        let isViewingFile = false;
+        let currentRawMarkdown = '';
+
+        // Strictly Original Browser Fullscreen + Hardware Landscape Orientation Lock
+        async function toggleFullScreenLandscape() {
+            const docEl = document.documentElement;
+            const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+
+            try {
+                if (!isFullscreen) {
+                    if (docEl.requestFullscreen) {
+                        await docEl.requestFullscreen({ navigationUI: 'hide' });
+                    } else if (docEl.webkitRequestFullscreen) {
+                        await docEl.webkitRequestFullscreen();
+                    } else if (docEl.msRequestFullscreen) {
+                        await docEl.msRequestFullscreen();
+                    }
+
+                    // Native Hardware Orientation Lock to Landscape
+                    if (screen.orientation && screen.orientation.lock) {
+                        try {
+                            await screen.orientation.lock('landscape-primary');
+                        } catch (e1) {
+                            try {
+                                await screen.orientation.lock('landscape');
+                            } catch (e2) {}
+                        }
+                    }
+                } else {
+                    if (screen.orientation && screen.orientation.unlock) {
+                        try { screen.orientation.unlock(); } catch (e) {}
+                    }
+
+                    if (document.exitFullscreen) {
+                        await document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        await document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        await document.msExitFullscreen();
+                    }
+                }
+            } catch (err) {
+                console.warn('Native fullscreen/orientation lock:', err);
+            }
+            setTimeout(() => window.dispatchEvent(new Event('resize')), 150);
+        }
+
+        // When entering Fullscreen Landscape, hide ALL bars so 100% ONLY content is visible
+        document.addEventListener('fullscreenchange', () => {
+            const isFullscreen = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+            const exitBtn = document.getElementById('exitLandscapeBtn');
+            if (isFullscreen) {
+                document.body.classList.add('pure-landscape');
+                exitBtn.classList.remove('hidden');
+            } else {
+                document.body.classList.remove('pure-landscape');
+                exitBtn.classList.add('hidden');
+            }
+            window.dispatchEvent(new Event('resize'));
+        });
+
+        // Natural sort helper so Unit 1, Unit 2, Chapter 1, Chapter 2 are ordered properly for students
+        function naturalCompare(a, b) {
+            return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
+        }
+
+        // Format clean student-friendly titles while keeping original meaning
+        function formatDisplayName(rawName) {
+            return rawName.replace(/\.md$/i, '').replace(/[-_]+/g, ' ').trim();
+        }
+
+        // Fetch GitHub recursive tree and filter strictly for .md paths (preserving nested folders)
+        async function fetchMdFiles() {
+            const loader = document.getElementById('loader');
+
+            try {
+                const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/git/trees/${BRANCH}?recursive=1`;
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error(`${response.status}`);
+
+                const data = await response.json();
+
+                mdFiles = (data.tree || []).filter(item =>
+                    item.type === 'blob' && item.path.toLowerCase().endsWith('.md')
+                );
+
+                loader.classList.add('hidden');
+                renderCurrentDirectory();
+            } catch (error) {
+                loader.classList.add('hidden');
+            }
+        }
+
+        // Render subfolders and .md files inside the current GitHub directory
+        function renderCurrentDirectory() {
+            isViewingFile = false;
+            // Show the Power Generation Plant Photo Background whenever browsing folders/files
+            document.body.classList.remove('reading-mode');
+
+            const folderGridView = document.getElementById('folderGridView');
+            const renderedView = document.getElementById('renderedView');
+
+            renderedView.classList.add('hidden');
+            folderGridView.classList.remove('hidden');
+            folderGridView.innerHTML = '';
+
+            // Toggle Back button vs Root icon
+            if (currentDir === '') {
+                document.getElementById('backToFoldersBtn').classList.add('hidden');
+                document.getElementById('homeFolderLogo').classList.remove('hidden');
+            } else {
+                document.getElementById('backToFoldersBtn').classList.remove('hidden');
+                document.getElementById('homeFolderLogo').classList.add('hidden');
+            }
+
+            const prefix = currentDir ? currentDir + '/' : '';
+            const subfolders = new Map(); // folderName -> count of .md items inside
+            const directFiles = [];
+
+            mdFiles.forEach(file => {
+                if (file.path.startsWith(prefix)) {
+                    const relativePath = file.path.slice(prefix.length);
+                    const parts = relativePath.split('/');
+                    if (parts.length > 1) {
+                        const folderName = parts[0];
+                        subfolders.set(folderName, (subfolders.get(folderName) || 0) + 1);
+                    } else if (parts.length === 1 && parts[0]) {
+                        directFiles.push({
+                            rawName: parts[0],
+                            displayName: formatDisplayName(parts[0]),
+                            fullPath: file.path
+                        });
+                    }
+                }
+            });
+
+            // 1. Render 3D Subfolders first
+            Array.from(subfolders.keys()).sort(naturalCompare).forEach(folderName => {
+                const count = subfolders.get(folderName);
+                const card = document.createElement('button');
+                card.className = 'folder-card-3d rounded-2xl p-4 flex flex-col items-center justify-center text-center gap-3 group';
+                card.innerHTML = `
+                    <div class="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-300 via-amber-500 to-orange-600 icon-3d-badge border border-white/40 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-slate-950 drop-shadow" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
+                        </svg>
+                        <div class="absolute -bottom-1.5 -right-1.5 min-w-[24px] h-6 px-1.5 rounded-lg bg-slate-950 border border-amber-400 text-[11px] font-extrabold text-amber-300 flex items-center justify-center shadow-lg">
+                            ${count}
+                        </div>
+                    </div>
+                    <span class="text-xs sm:text-sm font-extrabold text-white drop-shadow line-clamp-2 break-words tracking-wide">${formatDisplayName(folderName)}</span>
+                `;
+                card.onclick = () => {
+                    currentDir = currentDir ? `${currentDir}/${folderName}` : folderName;
+                    renderCurrentDirectory();
+                    document.getElementById('mainViewport').scrollTop = 0;
+                };
+                folderGridView.appendChild(card);
+            });
+
+            // 2. Render 3D .MD Study Files inside this folder
+            directFiles.sort((a, b) => naturalCompare(a.rawName, b.rawName)).forEach(fileObj => {
+                const card = document.createElement('button');
+                card.className = 'folder-card-3d file-card-3d rounded-2xl p-4 flex flex-col items-center justify-center text-center gap-3 group';
+                card.innerHTML = `
+                    <div class="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-300 via-sky-500 to-blue-700 icon-3d-badge border border-white/40 flex items-center justify-center">
+                        <svg class="w-9 h-9 text-white drop-shadow" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h2v5l-1-.75L9 9V4zm9 16H6V4h1v9l3-2.25L13 13V4h5v16z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xs sm:text-sm font-bold text-cyan-50 drop-shadow line-clamp-2 break-words">${fileObj.displayName}</span>
+                `;
+                card.onclick = () => openMdFile(fileObj.fullPath);
+                folderGridView.appendChild(card);
+            });
+        }
+
+        // Step Back Navigation
+        function navigateUp() {
+            if (isViewingFile) {
+                renderCurrentDirectory();
+                return;
+            }
+            if (currentDir !== '') {
+                const parts = currentDir.split('/');
+                parts.pop();
+                currentDir = parts.join('/');
+                renderCurrentDirectory();
+            }
+        }
+
+        // Open a specific .md file: Hides background photo so student gets a distraction-free reading screen
+        async function openMdFile(filePath) {
+            isViewingFile = true;
+            document.body.classList.add('reading-mode');
+
+            const loader = document.getElementById('loader');
+            const folderGridView = document.getElementById('folderGridView');
+            const renderedView = document.getElementById('renderedView');
+
+            folderGridView.classList.add('hidden');
+            renderedView.classList.add('hidden');
+            loader.classList.remove('hidden');
+
+            document.getElementById('backToFoldersBtn').classList.remove('hidden');
+            document.getElementById('homeFolderLogo').classList.add('hidden');
+
+            try {
+                const rawUrl = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/${encodeURIComponent(filePath).replace(/%2F/g, '/')}`;
+                const res = await fetch(rawUrl);
+                if (!res.ok) throw new Error('404');
+
+                currentRawMarkdown = await res.text();
+                loader.classList.add('hidden');
+                renderedView.innerHTML = marked.parse(currentRawMarkdown);
+                renderedView.classList.remove('hidden');
+                document.getElementById('mainViewport').scrollTop = 0;
+            } catch (err) {
+                loader.classList.add('hidden');
+            }
+        }
+
+        window.onload = function () {
+            fetchMdFiles();
+        };
+    </script>
+</body>
+</html>
